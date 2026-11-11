@@ -1,0 +1,31 @@
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+
+# Build
+build/
+bin/
+out/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+compile_commands.json
+
+# Executáveis
+*.exe
+*.out
+
+# Objetos
+*.o
+*.obj
+*.pdb
+
+# DLLs
+*.dll
+*.lib
+
+# Raylib/OpenGL logs
+*.log
