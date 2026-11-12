@@ -10,6 +10,5 @@ public:
 	void Run();
 	void Destroy();
 private:
-	FileManager m_FileManager;
 	ConfigMap m_Config;
 };

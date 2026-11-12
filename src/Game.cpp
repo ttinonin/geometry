@@ -3,9 +3,9 @@
 #include <iostream>
 #include <raylib.h>
 
+
 void Game::Init(const std::string& config) {
-	m_FileManager.Init(config);
-	m_Config = m_FileManager.GetConfigData();
+	m_Config = FileManager::GetConfigData(config);
 	
 	if (m_Config["Window"][3] == 1) {
 		SetConfigFlags(FLAG_FULLSCREEN_MODE);

@@ -3,18 +3,16 @@
 #include <sstream>
 #include <iostream>
 
-void FileManager::Init(const std::string& path) {
-	m_Config = std::ifstream(path);
-	if (!m_Config.is_open()) {
+ConfigMap FileManager::GetConfigData(const std::string& path) {
+	std::ifstream file(path);
+	if (!file.is_open()) {
 		throw std::runtime_error("Couldn't open the config file");
 	}
-}
 
-ConfigMap FileManager::GetConfigData() {
 	ConfigMap config;
 	std::string line;
 
-	while (std::getline(m_Config, line)) {
+	while (std::getline(file, line)) {
 		std::vector<int> result;
 		int currentWord = 0;
 		std::stringstream ss(line);

@@ -9,8 +9,5 @@ using ConfigMap = std::map<std::string, std::vector<int>>;
 
 class FileManager {
 public:
-	void Init(const std::string& path);
-	ConfigMap GetConfigData();
-private:
-	std::ifstream m_Config;
+	static ConfigMap GetConfigData(const std::string& path);
 };
