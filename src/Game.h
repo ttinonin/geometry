@@ -2,7 +2,8 @@
 
 #include <vector>
 #include <string>
-#include "utils/FileManager.h"
+#include <utils/FileManager.h>
+#include "Level.h"
 
 class Game {
 public:
@@ -11,4 +12,5 @@ public:
 	void Destroy();
 private:
 	ConfigMap m_Config;
+	Level m_Level;
 };

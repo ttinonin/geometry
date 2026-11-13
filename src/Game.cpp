@@ -13,12 +13,20 @@ void Game::Init(const std::string& config) {
 
 	InitWindow(m_Config["Window"][0], m_Config["Window"][1], "Geometry");
 	SetTargetFPS(m_Config["Window"][2]);
+
+	m_Level.Init();
 }
 
 void Game::Run() {
 	while (!WindowShouldClose()) {
+		float deltaTime = GetFrameTime();
+		
+		m_Level.Update(deltaTime);
+		
 		BeginDrawing();
 		ClearBackground(BLACK);
+
+		m_Level.Draw();
 
 		EndDrawing();
 	}
