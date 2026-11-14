@@ -11,7 +11,8 @@ void Player::Init() {
 	Get<CShape>().Circle.SetOutlineColor(Color{ static_cast<unsigned char>(config["Player"][6]), static_cast<unsigned char>(config["Player"][7]), static_cast<unsigned char>(config["Player"][8]), 255 });
 	Get<CShape>().Circle.SetFillColor(Color{ static_cast<unsigned char>(config["Player"][3]), static_cast<unsigned char>(config["Player"][4]), static_cast<unsigned char>(config["Player"][5]), 255 });
 
-	Add<CTransform>(Vector2{ 30.0f, 30.0f }, Vector2{10.0f, 10.0f});
+	Add<CTransform>(Vector2{ 30.0f, 30.0f }, Vector2{0.0f, 0.0f});
+	Add<CInput>();
 }
 
 void Player::Update(float deltaTime) {
@@ -21,6 +22,14 @@ void Player::Update(float deltaTime) {
 void Player::Draw() {
 	auto& shape = Get<CShape>();
 	auto& transform = Get<CTransform>();
+
+	DrawPoly(
+		transform.Position,
+		shape.Circle.GetPointCount(),
+		shape.Circle.GetRadius(),
+		shape.Circle.GetRotation(),
+		shape.Circle.GetFillColor()
+	);
 
 	DrawPolyLinesEx(
 		transform.Position, 

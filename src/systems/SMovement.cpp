@@ -7,7 +7,7 @@ void SMovement::Update(EntityManager& entityManager, float deltaTime) {
 		auto& transform = entity->Get<CTransform>();
 		auto& shape = entity->Get<CShape>();
 
-		transform.angle += 1.0f;
+		transform.angle += 3.0f;
 		shape.Circle.SetRotation(transform.angle);
 	}
 }
