@@ -3,7 +3,9 @@
 #include <sstream>
 #include <iostream>
 
-ConfigMap FileManager::GetConfigData(const std::string& path) {
+ConfigMap FileManager::Config;
+
+ConfigMap FileManager::GetConfigDataFromFile(const std::string& path) {
 	std::ifstream file(path);
 	if (!file.is_open()) {
 		throw std::runtime_error("Couldn't open the config file");
@@ -28,6 +30,11 @@ ConfigMap FileManager::GetConfigData(const std::string& path) {
 		}
 		config[keyWord] = result;
 	}
+	Config = config;
 
 	return config;
+}
+
+ConfigMap FileManager::GetConfigData() {
+	return Config;
 }

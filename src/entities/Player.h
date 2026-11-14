@@ -9,4 +9,5 @@ public:
 
 	void Init();
 	void Draw() override;
+	void Update(float deltaTime) override;
 };

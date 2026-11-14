@@ -46,4 +46,5 @@ public:
 	void Destroy() { m_Alive = false; };
 	const std::string& GetTag() const { return m_Tag; };
 	virtual void Draw() = 0;
+	virtual void Update(float deltaTime) = 0;
 };

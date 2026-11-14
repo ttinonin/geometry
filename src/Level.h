@@ -2,6 +2,7 @@
 
 #include <managers/EntityManager.h>
 #include <entities/Player.h>
+#include <managers/SystemManager.h>
 
 class Level {
 public:
@@ -10,4 +11,5 @@ public:
 	void Draw();
 private:
 	EntityManager m_EntityManager;
+	SystemManager m_SystemManager;
 };

@@ -9,5 +9,7 @@ using ConfigMap = std::map<std::string, std::vector<int>>;
 
 class FileManager {
 public:
-	static ConfigMap GetConfigData(const std::string& path);
+	static ConfigMap GetConfigDataFromFile(const std::string& path);
+	static ConfigMap GetConfigData();
+	static ConfigMap Config;
 };

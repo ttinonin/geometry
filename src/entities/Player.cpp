@@ -1,8 +1,21 @@
 #include "Player.h"
+#include <utils/FileManager.h>
 
 void Player::Init() {
+	ConfigMap config = FileManager::GetConfigData();
+
 	Add<CShape>();
+	Get<CShape>().Circle.SetRadius(config["Player"][0]);
+	Get<CShape>().Circle.SetPointCount((float)config["Player"][10]);
+	Get<CShape>().Circle.SetThickness((float)config["Player"][9]);
+	Get<CShape>().Circle.SetOutlineColor(Color{ static_cast<unsigned char>(config["Player"][6]), static_cast<unsigned char>(config["Player"][7]), static_cast<unsigned char>(config["Player"][8]), 255 });
+	Get<CShape>().Circle.SetFillColor(Color{ static_cast<unsigned char>(config["Player"][3]), static_cast<unsigned char>(config["Player"][4]), static_cast<unsigned char>(config["Player"][5]), 255 });
+
 	Add<CTransform>(Vector2{ 30.0f, 30.0f }, Vector2{10.0f, 10.0f});
+}
+
+void Player::Update(float deltaTime) {
+
 }
 
 void Player::Draw() {

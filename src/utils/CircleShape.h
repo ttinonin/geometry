@@ -25,18 +25,10 @@ public:
 	void SetFillColor(Color color) { m_FillColor = color; };
 	Color GetFillColor() const { return m_FillColor; };
 private:
-	/*Vector2 m_Position = {};
 	float m_Radius = 0.0f;
 	float m_PointCount = 0.0f;
 	float m_Rotation = 0.0f;
 	float m_Thickness = 0.0f;
 	Color m_FillColor = {};
-	Color m_OutlineColor = {};*/
-
-	float m_Radius = 32.0f;
-	float m_PointCount = 8;
-	float m_Rotation = 0.0f;
-	float m_Thickness = 4.0f;
-	Color m_FillColor = {};
-	Color m_OutlineColor = {255,0,0,255};
+	Color m_OutlineColor = {};
 };
