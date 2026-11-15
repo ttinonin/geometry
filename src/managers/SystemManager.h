@@ -1,6 +1,7 @@
 #pragma once
 
 #include <systems/SMovement.h>
+#include <systems/SInput.h>
 #include "EntityManager.h"
 
 class SystemManager {
@@ -10,4 +11,5 @@ public:
 private:
 	EntityManager* m_Entities = nullptr;
 	SMovement m_Movement;
+	SInput m_Input;
 };

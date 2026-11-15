@@ -6,4 +6,5 @@ void SystemManager::Init(EntityManager& entities) {
 
 void SystemManager::Update(float deltaTime) {
 	m_Movement.Update(*m_Entities, deltaTime);
+	m_Input.Update(*m_Entities, deltaTime);
 }

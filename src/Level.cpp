@@ -1,6 +1,11 @@
 #include "Level.h"
 #include <imgui.h>
 
+#ifdef _DEBUG
+#include <utils/DebugConfig.h>
+#endif // _DEBUG
+
+
 void Level::Init() {
 	m_SystemManager.Init(m_EntityManager);
 	m_EnemyManager.Init(m_EntityManager);
@@ -12,22 +17,26 @@ void Level::Init() {
 }
 
 void Level::Draw() {
+#ifdef _DEBUG
+	auto& debug = DebugConfig::GetInstance();
+
 	ImGui::Begin("Geometry");
 	if (ImGui::BeginTabBar("Tabbar")) {
 		if (ImGui::BeginTabItem("Systems")) {
-			ImGui::Text("General settings go here.");
+			ImGui::Checkbox("Movement", &debug.ActiveMovement);
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem("Audio"))
+		if (ImGui::BeginTabItem("Entity Manager"))
 		{
-			ImGui::Text("Audio controls go here.");
+
 			ImGui::EndTabItem();
 		}
 
 		ImGui::EndTabBar();
 	}
 	ImGui::End();
+#endif
 
 	for (const auto& entity : m_EntityManager.GetEntities()) {
 		entity->Draw();

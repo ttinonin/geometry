@@ -12,7 +12,11 @@ void Player::Init() {
 	Get<CShape>().Circle.SetFillColor(Color{ static_cast<unsigned char>(config["Player"][3]), static_cast<unsigned char>(config["Player"][4]), static_cast<unsigned char>(config["Player"][5]), 255 });
 
 	Add<CTransform>(Vector2{ 30.0f, 30.0f }, Vector2{0.0f, 0.0f});
+	Get<CTransform>().Scale.x = (float)config["Player"][2];
+	Get<CTransform>().Scale.y = (float)config["Player"][2];
+
 	Add<CInput>();
+
 }
 
 void Player::Update(float deltaTime) {
