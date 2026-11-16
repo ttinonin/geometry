@@ -8,6 +8,10 @@ public:
 	}
 
 	bool ActiveMovement = true;
+
+	bool ActiveSpawning = true;
+	float SpawnInterval = 60.0f;
+	bool ManualSpawn = false;
 private:
 	DebugConfig() = default;
 };

@@ -24,6 +24,16 @@ void Level::Draw() {
 	if (ImGui::BeginTabBar("Tabbar")) {
 		if (ImGui::BeginTabItem("Systems")) {
 			ImGui::Checkbox("Movement", &debug.ActiveMovement);
+
+			
+			ImGui::Checkbox("Spawning", &debug.ActiveSpawning);
+			ImGui::Indent();
+			ImGui::SliderFloat("Spawn Interval", &debug.SpawnInterval, 1.0f, 100.0f);
+			if (ImGui::Button("Manual Spawn")) {
+				debug.ManualSpawn = true;
+			}
+			ImGui::Unindent();
+
 			ImGui::EndTabItem();
 		}
 
@@ -46,5 +56,5 @@ void Level::Draw() {
 void Level::Update(float deltaTime) {
 	m_EntityManager.Update();
 	m_SystemManager.Update(deltaTime);
-	m_EnemyManager.Update();
+	m_EnemyManager.Update(deltaTime);
 }
