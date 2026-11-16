@@ -12,6 +12,8 @@ public:
 	bool ActiveSpawning = true;
 	float SpawnInterval = 60.0f;
 	bool ManualSpawn = false;
+
+	bool ActiveLifespan = true;
 private:
 	DebugConfig() = default;
 };

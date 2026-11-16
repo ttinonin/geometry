@@ -20,6 +20,8 @@ void Enemy::Init() {
 	};
 
 	Get<CShape>().Circle.SetFillColor(randomColor);
+
+	Add<CLifeSpan>(config["Enemy"][10]);
 }
 
 void Enemy::Draw() {

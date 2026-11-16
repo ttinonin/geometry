@@ -1,7 +1,10 @@
 #include "EnemyManager.h"
 #include <entities/Enemy.h>
 #include <utils/FileManager.h>
+
+#ifdef _DEBUG
 #include <utils/DebugConfig.h>
+#endif // _DEBUG
 
 void EnemyManager::Init(EntityManager& entities) {
 	m_Entites = &entities;

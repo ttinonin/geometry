@@ -23,8 +23,9 @@ void Level::Draw() {
 	ImGui::Begin("Geometry");
 	if (ImGui::BeginTabBar("Tabbar")) {
 		if (ImGui::BeginTabItem("Systems")) {
-			ImGui::Checkbox("Movement", &debug.ActiveMovement);
+			ImGui::Checkbox("Lifespan", &debug.ActiveLifespan);
 
+			ImGui::Checkbox("Movement", &debug.ActiveMovement);
 			
 			ImGui::Checkbox("Spawning", &debug.ActiveSpawning);
 			ImGui::Indent();
