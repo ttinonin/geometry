@@ -40,6 +40,25 @@ void Level::Draw() {
 
 		if (ImGui::BeginTabItem("Entity Manager"))
 		{
+			if(ImGui::TreeNode("Entities by Tag")) {
+				for (auto& [tag, entities] : m_EntityManager.GetEntitiesTags()) {
+					if (ImGui::TreeNode(tag.c_str())) {
+						for (auto& entity : entities) {
+							if (ImGui::SmallButton("D")) {
+								entity->Destroy();
+							}
+
+							ImGui::SameLine();
+
+							auto& transform = entity->Get<CTransform>();
+							ImGui::Text("%d %s (%d, %d)", entity->GetId(), tag.c_str(), (int)transform.Position.x, (int)transform.Position.y);
+						}
+
+						ImGui::TreePop();
+					}
+				}
+				ImGui::TreePop();
+			}
 
 			ImGui::EndTabItem();
 		}
