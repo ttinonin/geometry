@@ -17,6 +17,7 @@ void Player::Init() {
 
 	Add<CInput>();
 
+	Add<CCollision>((float)config["Player"][0]);
 }
 
 void Player::Update(float deltaTime) {
