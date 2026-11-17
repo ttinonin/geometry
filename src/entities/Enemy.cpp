@@ -7,12 +7,6 @@ void Enemy::Init() {
 	Add<CTransform>(Vector2{ (float)GetRandomValue(0, config["Window"][0]), (float)GetRandomValue(0, config["Window"][1]) }, Vector2{1.0f,1.0f});
 
 	Add<CCollision>((float)config["Enemy"][0]);
-
-	Add<CShape>();
-	Get<CShape>().Circle.SetRadius(config["Enemy"][0]);
-	Get<CShape>().Circle.SetPointCount((float)GetRandomValue(config["Enemy"][8], config["Enemy"][9]));
-	Get<CShape>().Circle.SetThickness((float)config["Enemy"][7]);
-	Get<CShape>().Circle.SetOutlineColor(Color{ static_cast<unsigned char>(config["Enemy"][4]), static_cast<unsigned char>(config["Enemy"][5]), static_cast<unsigned char>(config["Enemy"][6]), 255 });
 	
 	Color randomColor = {
 	(unsigned char)GetRandomValue(0, 255),
@@ -21,7 +15,13 @@ void Enemy::Init() {
 	255
 	};
 
-	Get<CShape>().Circle.SetFillColor(randomColor);
+	Add<CShape>(
+		config["Enemy"][0],
+		(float)GetRandomValue(config["Enemy"][8], config["Enemy"][9]),
+		(float)config["Enemy"][7],
+		randomColor,
+		Color{ static_cast<unsigned char>(config["Enemy"][4]), static_cast<unsigned char>(config["Enemy"][5]), static_cast<unsigned char>(config["Enemy"][6]), 255 }
+	);
 
 	Add<CLifeSpan>(config["Enemy"][10]);
 }

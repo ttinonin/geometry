@@ -35,9 +35,15 @@ void SMovement::Rotate(EntityManager& entityManager, float deltaTime) {
 
 void SMovement::Move(EntityManager& entityManager, float deltaTime) {
 	for (auto& entity : entityManager.GetEntities()) {
-		if (!entity->Has<CInput>() || !entity->Has<CTransform>()) continue;
+		if (!entity->Has<CTransform>()) continue;
 
 		auto& transform = entity->Get<CTransform>();
+
+		transform.Position.x += transform.Velocity.x * deltaTime * transform.Scale.x;
+		transform.Position.y += transform.Velocity.y * deltaTime * transform.Scale.y;
+
+		if (!entity->Has<CInput>()) continue;
+
 		auto& input = entity->Get<CInput>();
 		Vector2 inputVector = {};
 
@@ -62,8 +68,5 @@ void SMovement::Move(EntityManager& entityManager, float deltaTime) {
 		}
 
 		transform.Velocity = inputVector;
-
-		transform.Position.x += inputVector.x * deltaTime * transform.Scale.x;
-		transform.Position.y += inputVector.y * deltaTime * transform.Scale.y;
 	}
 }

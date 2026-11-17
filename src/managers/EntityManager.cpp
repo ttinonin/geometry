@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include <algorithm>
+#include <iostream>
 
 void EntityManager::Update() {
     for (auto& e : m_ToAdd) {

@@ -9,11 +9,10 @@
 void Level::Init() {
 	m_SystemManager.Init(m_EntityManager);
 	m_EnemyManager.Init(m_EntityManager);
+	m_BulletManager.Init(m_EntityManager);
 
 	auto player = m_EntityManager.AddEntity<Player>();
 	player->Init();
-	m_EnemyManager.Spawn();
-
 }
 
 void Level::Draw() {
@@ -77,4 +76,5 @@ void Level::Update(float deltaTime) {
 	m_EntityManager.Update();
 	m_SystemManager.Update(deltaTime);
 	m_EnemyManager.Update(deltaTime);
+	m_BulletManager.Update(deltaTime);
 }

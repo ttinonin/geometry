@@ -4,6 +4,7 @@
 #include <entities/Player.h>
 #include <managers/SystemManager.h>
 #include <managers/EnemyManager.h>
+#include <managers/BulletManager.h>
 
 class Level {
 public:
@@ -12,6 +13,7 @@ public:
 	void Draw();
 private:
 	EnemyManager m_EnemyManager;
+	BulletManager m_BulletManager;
 	EntityManager m_EntityManager;
 	SystemManager m_SystemManager;
 };
