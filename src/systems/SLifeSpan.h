@@ -5,4 +5,6 @@
 class SLifeSpan {
 public:
 	void Update(EntityManager& entityManager, float deltaTime);
+private:
+	void FadeOut(const std::shared_ptr<Entity>& entity);
 };

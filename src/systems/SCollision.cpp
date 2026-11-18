@@ -1,8 +1,11 @@
 #include "SCollision.h"
+#include <entities/Small.h>
 #include <iostream>
+#include <utils/FileManager.h>
 
 void SCollision::Update(EntityManager& entityManager, float deltaTime) {
 	auto& entities = entityManager.GetEntities();
+	auto config = FileManager::GetConfigData();
 
 	for (size_t i = 0; i < entities.size(); i++) {
 		auto& entityA = entities[i];
@@ -24,15 +27,52 @@ void SCollision::Update(EntityManager& entityManager, float deltaTime) {
 				const std::string& tagB = entityB->GetTag();
 
 				if (IsCollisionPair(tagA, tagB, "bullet", "enemy")) {
-					std::cout << "Bullet hits enemy\n";
+					auto enemy = GetEntityByTag(entityA, entityB, "enemy");
+					auto bullet = GetEntityByTag(entityA, entityB, "bullet");
+
+					bullet->Destroy();
+
+					auto& enemyShape = enemy->Get<CShape>();
+					auto& enemyTransform = enemy->Get<CTransform>();
+
+					int vertices = enemyShape.Circle.GetPointCount();
+					float angleStep = 360.0f / vertices;
+
+					for (int i = 0; i < vertices; i++) {
+						float angle = (i * angleStep) * DEG2RAD;
+
+						Vector2 direction = {
+							cosf(angle),
+							sinf(angle)
+						};
+
+						auto& small = entityManager.AddEntity<Small>();
+						small->Init(
+							8,
+							100,
+							enemyTransform.Position,
+							direction,
+							enemyShape.Circle.GetFillColor(),
+							enemyShape.Circle.GetOutlineColor(),
+							vertices,
+							enemyShape.Circle.GetThickness(),
+							config["Enemy"][10]
+						);
+					}
+					
+					enemy->Destroy();
 				}
 
 				if (IsCollisionPair(tagA, tagB, "bullet", "small")) {
-					std::cout << "Bullet hits small\n";
+					entityA->Destroy();
+					entityB->Destroy();
 				}
 
 				if (IsCollisionPair(tagA, tagB, "player", "small")) {
-					std::cout << "Player hits small\n";
+					auto player = GetEntityByTag(entityA, entityB, "player");
+					auto small = GetEntityByTag(entityA, entityB, "small");
+
+					small->Destroy();
 				}
 
 				if (IsCollisionPair(tagA, tagB, "player", "enemy")) {

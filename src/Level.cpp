@@ -50,7 +50,7 @@ void Level::Draw() {
 							ImGui::SameLine();
 
 							auto& transform = entity->Get<CTransform>();
-							ImGui::Text("%d %s (%d, %d)", entity->GetId(), tag.c_str(), (int)transform.Position.x, (int)transform.Position.y);
+							ImGui::Text("%d %s (%d, %d) (%.2f, %.2f)", entity->GetId(), tag.c_str(), (int)transform.Position.x, (int)transform.Position.y, (float)transform.Velocity.x, (float)transform.Velocity.y);
 						}
 
 						ImGui::TreePop();

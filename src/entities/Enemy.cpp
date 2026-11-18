@@ -22,8 +22,6 @@ void Enemy::Init() {
 		randomColor,
 		Color{ static_cast<unsigned char>(config["Enemy"][4]), static_cast<unsigned char>(config["Enemy"][5]), static_cast<unsigned char>(config["Enemy"][6]), 255 }
 	);
-
-	Add<CLifeSpan>(config["Enemy"][10]);
 }
 
 void Enemy::Draw() {
