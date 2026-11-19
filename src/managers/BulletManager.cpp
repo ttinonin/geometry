@@ -7,7 +7,7 @@ void BulletManager::Init(EntityManager& entities) {
 }
 
 void BulletManager::Update(float deltaTime) {
-	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 		Spawn(GetMousePosition());
 	}
 }

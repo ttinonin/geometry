@@ -4,7 +4,15 @@
 
 void Enemy::Init() {
 	ConfigMap config = FileManager::GetConfigData();
-	Add<CTransform>(Vector2{ (float)GetRandomValue(0, config["Window"][0]), (float)GetRandomValue(0, config["Window"][1]) }, Vector2{1.0f,1.0f});
+	float angle = (float)GetRandomValue(0, 359) * DEG2RAD;
+
+	Vector2 direction = {
+		cosf(angle),
+		sinf(angle)
+	};
+
+	Add<CTransform>(Vector2{ (float)GetRandomValue(config["Enemy"][0], config["Window"][0] - config["Enemy"][0]), (float)GetRandomValue(config["Enemy"][0], config["Window"][1] - config["Enemy"][0]) }, direction);
+	Get<CTransform>().Scale = Vector2{ (float)GetRandomValue(config["Enemy"][2], config["Enemy"][3]), (float)GetRandomValue(config["Enemy"][2], config["Enemy"][3]) };
 
 	Add<CCollision>((float)config["Enemy"][0]);
 	

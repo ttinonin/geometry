@@ -6,6 +6,8 @@ class SMovement {
 public:
 	void Update(EntityManager& entityManager, float deltaTime);
 private:
-	void Rotate(EntityManager& entityManager, float deltaTime);
-	void Move(EntityManager& entityManager, float deltaTime);
+	void PlayerScreenLimit(const std::shared_ptr<Entity>& entity, float deltaTime);
+	void EnemyScreenLimit(const std::shared_ptr<Entity>& entity, float deltaTime);
+	void Rotate(const std::shared_ptr<Entity>& entity, float deltaTime);
+	void Move(const std::shared_ptr<Entity>& entity, float deltaTime);
 };
