@@ -19,6 +19,8 @@ void Player::Init() {
 	Add<CInput>();
 
 	Add<CCollision>((float)config["Player"][0]);
+
+	Add<CScore>();
 }
 
 void Player::Update(float deltaTime) {
@@ -28,6 +30,7 @@ void Player::Update(float deltaTime) {
 void Player::Draw() {
 	auto& shape = Get<CShape>();
 	auto& transform = Get<CTransform>();
+	auto& score = Get<CScore>();
 
 	DrawPoly(
 		transform.Position,
@@ -45,4 +48,6 @@ void Player::Draw() {
 		shape.Circle.GetThickness(),
 		shape.Circle.GetOutlineColor()
 	);
+
+	DrawText(TextFormat("SCORE: %d", score.Score), 0, 0, 20, WHITE);
 }

@@ -6,6 +6,7 @@
 void SCollision::Update(EntityManager& entityManager, float deltaTime) {
 	auto& entities = entityManager.GetEntities();
 	auto config = FileManager::GetConfigData();
+	auto& score = entityManager.GetEntities("player")[0]->Get<CScore>();
 
 	for (size_t i = 0; i < entities.size(); i++) {
 		auto& entityA = entities[i];
@@ -60,6 +61,7 @@ void SCollision::Update(EntityManager& entityManager, float deltaTime) {
 						);
 					}
 					
+					score.Increment(1);
 					enemy->Destroy();
 				}
 
@@ -72,11 +74,13 @@ void SCollision::Update(EntityManager& entityManager, float deltaTime) {
 					auto player = GetEntityByTag(entityA, entityB, "player");
 					auto small = GetEntityByTag(entityA, entityB, "small");
 
+					score.Decrement(1);
 					small->Destroy();
 				}
 
 				if (IsCollisionPair(tagA, tagB, "player", "enemy")) {
 					std::cout << "Player hits enemy\n";
+					score.Score = 0;
 				}
 			}
 		}
