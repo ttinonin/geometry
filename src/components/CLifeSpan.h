@@ -7,6 +7,6 @@ class CLifeSpan : public Component {
 public:
 	CLifeSpan() {}
 	CLifeSpan(int lifespan) : Lifespan(lifespan), mTimer((float)lifespan) {}
-	int Lifespan = 0;
+	float Lifespan = 0.0f;
 	Timer mTimer;
 };
