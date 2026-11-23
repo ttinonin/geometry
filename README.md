@@ -31,6 +31,10 @@ Destroy geometric enemies scattered throughout the arena. Larger polygons break 
   <img src="resources/gameplay.gif" alt="Gameplay footage" width="700"/>
 </p>
 
+<p align="center">
+  <img src="resources/game.png" alt="Gameplay footage" width="700"/>
+</p>
+
 ## Architecture
 
 This project uses an Entity Component System (ECS) architecture to organize gameplay logic and separate responsibilities across different systems.
