@@ -1,6 +1,5 @@
 #include "SCollision.h"
 #include <entities/Small.h>
-#include <iostream>
 #include <utils/FileManager.h>
 
 void SCollision::Update(EntityManager& entityManager, float deltaTime) {
@@ -79,7 +78,6 @@ void SCollision::Update(EntityManager& entityManager, float deltaTime) {
 				}
 
 				if (IsCollisionPair(tagA, tagB, "player", "enemy")) {
-					std::cout << "Player hits enemy\n";
 					score.Score = 0;
 				}
 			}

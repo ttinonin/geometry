@@ -1,30 +1,66 @@
-## Player:
+# Geometry — Arcade Shooter
 
-- The player is represented by a shape which is defined in the config file.
-- The player must spawn in the center of the screen at the beginning of the game, and after it dies (collides with an enemy).
-- The player moves by a speed S read from the config file in these directions:
-  - Up: W key, Left: A key, Down: S key, Right: D key.
-- Note: Be careful to set the speed of the player appropriately.
-  - If player is moving diagonally, it should not be traveling at speed S in both axes, but its total speed along the diagonal should be S.
-  - You can accomplish this by normalizing the velocity then multiplying by S.
-- The player is confined to move only within the bounds of the window.
-- The player will shoot a bullet toward the mouse pointer when the left mouse button is clicked. The speed, size, and lifespan of the bullets are read from the config file.
+A fast-paced arcade shooter inspired by **Geometry Wars**, where geometric enemies swarm the arena, bullets shatter polygons into smaller fragments, and every kill earns you points.
 
-## Enemy(s):
+Survive, shoot, dodge, and rack up the highest score you can!
 
-- Enemies will spawn in a random location on the screen every X frames, where X is defined in the configuration file.
-- Enemies must not overlap the sides of the screen at the time of spawn.
-- Enemy shapes have random number of vertices, between a given minimum and maximum number, which is specified in the config file.
-- Enemy shape radius will be specified in the configuration file.
-- Enemies will be given a random color upon spawning.
-- Enemies will be given a random speed upon spawning, between a minimum and maximum value specified in the config file.
-- When an enemy reaches the edge of the window, it should bounce off in the opposite direction at the same speed.
-- When (large) enemies collide with a bullet or player, they are destroyed, and N small enemies spawn in its place, where N is the number of vertices of the original enemy. Each small enemy must have the same number of vertices and color of the original enemy. These small entities travel outward at angles at a fixed intervals equal to (360 / vertices). For example, if the original enemy had 6 sides, the 6 smaller enemies will travel outward in intervals of (360/6) = 60 degrees.
-- Small enemies should be given a 'reasonable' speed.
+## Gameplay
 
-# Configuration file
+Destroy geometric enemies scattered throughout the arena. Larger polygons break apart into smaller ones when hit, creating increasingly chaotic encounters. Each destroyed enemy rewards you with score, encouraging you to keep moving and survive as long as possible.
 
-- Window: WIDTH HEIGHT FRAME_LIMIT FULL_SCREEN
-- Player: SHAPE_RADIUS(int) COLLISION_RADIUS(int) SPEED(float) FILL_COLOR(int,int,int) OUTLINE_COLOR(int,int,int) OUTLINE_THICKNESS(int) SHAPE_VERTICES(int)
-- Enemy: SHAPE_RADIUS(int) COLLISION_RADIUS(int) SPEE_MIN/SPEED_MAX(float, float) OUTLINE_COLOR(int,int,int) OUTLINE_THICKNESS(int) VERTICES_MIN/VERTICES_MAX(int, int) SMALL_LIFESPAN(int) SPAWN_INTERVAL(int)
-- Bullet: SHAPE_RADIUS(int) COLLISION_RADIUS(int) SPEED(float) FILL_COLOR(int,int,int) OUTLINE_COLOR(int,int,int) OUTLINE_THICKNESS(int) SHAPE_VERTICES(int) LIFESPAN (int)
+## Features
+
+- Arcade-style shooting gameplay inspired by Geometry Wars
+- Polygon enemies that split into smaller fragments when destroyed
+- Score system rewarding enemy destruction
+- Entity Component System (ECS) architecture built in C++
+- Modular systems for movement, collision detection, input, and entity lifespan
+- Debug tools for inspecting and testing gameplay systems
+- Built with C++17 and Raylib
+
+## Tech Stack
+
+- **Language:** C++17
+- **Graphics & Game Framework:** [Raylib](https://www.raylib.com/)
+- **GUI:** Dear ImGui
+- **Build System:** CMake
+
+## Screenshots
+
+<p align="center">
+  <img src="resources/gameplay.gif" alt="Gameplay footage" width="700"/>
+</p>
+
+## Architecture
+
+This project uses an Entity Component System (ECS) architecture to organize gameplay logic and separate responsibilities across different systems.
+
+Some of the systems implemented include:
+
+- Input System
+- Movement System
+- Collision System
+- Lifespan System
+- Entity Management
+- System Management
+
+The ECS architecture allows entities to be composed of different components while systems independently handle their behavior.
+
+## Inspiration & Acknowledgements
+
+This project was developed as a learning project inspired by the Geometry Wars arcade genre and gameplay concepts explored in the following course.
+
+- **Course / Tutorial:** [COMP 4300 - C++ Game Programming - Fall 2026](https://youtube.com/playlist?list=PLdEgIOpXtE-s&si=c3uooOr2vmnaaCZB)
+
+The course served as a learning reference, while the game implementation and ongoing development provided an opportunity to explore C++, ECS architecture, game systems, and gameplay programming.
+
+## Building
+
+This project uses CMake and requires a C++17-compatible compiler.
+
+```bash
+git clone https://github.com/ttinonin/geometry.git
+cd geometry
+cmake -B build -S .
+cmake --build build --config Release
+```
